@@ -19,8 +19,8 @@ app.get('/location', (request, response) => {
 // ----- Weather route
 app.get('/weather', (request, response) => {
   const forecastArray = [];
-  let forecast = new Weather(require('./data/weather.json'));
-  forecast.data.forEach(value => {
+  let forecast = new Weather(require('./data/weather.json').data);
+  forecast.forEach(value => {
     forecastArray.push(new Weather(value));
   });
   response.send(forecastArray);
