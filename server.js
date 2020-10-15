@@ -13,7 +13,7 @@ app.use(cors());
 // app.get('/', (request, response) => {
 //   response.send('Hello');
 // });
-app.get('/locations', (request, response) => {
+app.get('/location', (request, response) => {
   let location = new Location(require('./data/location.json')[0], request.query.city);
   response.send(location);
 });
