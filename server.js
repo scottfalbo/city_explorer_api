@@ -3,7 +3,6 @@
 // ----- Dependencies
 const express = require('express');
 const cors = require('cors');
-const { response } = require('express');
 require('dotenv').config();
 
 const PORT = process.env.PORT || 3000;
@@ -14,7 +13,7 @@ app.use(cors());
 // app.get('/', (request, response) => {
 //   response.send('Hello');
 // });
-app.get('/locations', (request, reponse) => {
+app.get('/locations', (request, response) => {
   let location = new Location(require('./data/location.json')[0], request.query.city);
   response.send(location);
 });
