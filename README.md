@@ -20,7 +20,8 @@
 ## Credits and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 -->
-
+`dateToString()`
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toString
 
 + **Feature**: Locations
   + Estimated time: 60 minutes
@@ -35,3 +36,9 @@
   + Finish time: 3:15pm
   + Actual time: 30 minutes
 
+
++ **Feature**: Errors
+  + Estimated time: 45 minutes
+  + Start time: 4:30pm
+  + Finish time: 
+  + Actual time: 

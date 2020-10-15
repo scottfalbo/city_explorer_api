@@ -26,6 +26,14 @@ app.get('/weather', (request, response) => {
   response.send(forecastArray);
 });
 
+// -------- 404 route
+app.get('*', (request, response) => {
+  response.send({
+    status: 500,
+    responseText: `Sorry, something went wrong, ... `
+  });
+});
+
 // ----- Location constructor
 function Location(obj, query){
   this.search_query = query;
