@@ -19,10 +19,10 @@ app.get('/location', (request, response) => {
 });
 
 function Location(obj, query){
-  this.query = query;
-  this.formattedQuery = obj.display_name;
-  this.lat = obj.lat;
-  this.lon = obj.lon;
+  this.search_query = query;
+  this.formatted_query = obj.display_name;
+  this.latitude = obj.lat;
+  this.longitude = obj.lon;
 }
 
 
