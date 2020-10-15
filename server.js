@@ -27,7 +27,7 @@ app.get('/weather', (request, response) => {
 });
 
 // -------- 404 route
-app.get('*', (request, response) => {
+app.get(('/location','/weather'), (request, response) => {
   response.send({
     status: 500,
     responseText: `Sorry, something went wrong, ... `
