@@ -22,8 +22,9 @@
 -->
 
 
-+ **Feature**:
-  + Estimated time:
-  + Start time:
-  + Finish time: 
-  + Actual time:
++ **Feature**: Locations
+  + Estimated time: 60 minutes
+  + Start time: 2:12pm
+  + Finish time: 2:43pm
+  + Actual time: 30 minutes
+
