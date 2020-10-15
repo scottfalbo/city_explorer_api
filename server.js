@@ -37,11 +37,9 @@ function Location(obj, query){
 // ----- Weather constructor
 function Weather(obj){
   this.forecast = obj.weather.description;
-  this.time = obj.valid_date;
+  this.time = new Date(obj.valid_date).toDateString();
 }
 
 app.listen(PORT, () => {
   // start the server
 });
-
-//var d = new Date("2015-03-25")

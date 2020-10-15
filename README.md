@@ -32,5 +32,6 @@
 + **Feature**: Weather
   + Estimated time: 45 minutes
   + Start time: 2:46pm
-  + Finish time: 
-  + Actual time: 
+  + Finish time: 3:15pm
+  + Actual time: 30 minutes
+
