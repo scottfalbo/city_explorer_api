@@ -27,11 +27,12 @@ app.get('/weather', (request, response) => {
 });
 
 // -------- 404 route
-app.get(('/location','/weather'), (request, response) => {
-  response.send({
+app.get('/location', (request, response) => {
+  let invalid = {
     status: 500,
-    responseText: `Sorry, something went wrong, ... `
-  });
+    responseText: `Sorry, something went wrong...`
+  };
+  response.send(invalid);
 });
 
 // ----- Location constructor
