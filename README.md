@@ -1,15 +1,34 @@
 # city_explorer_api
 
-**Author**: Your Name Goes Here
+**Author**: Scott Falbo
 **Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
 
 ## Overview
-<!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
+This is a backend server that:
+1. Receives a request from the client.
+2. Retrieves data from an api, or local json in this case.
+3. Packages that data.
+4. Responds to the front end with the requested object.
 
 ## Getting Started
-<!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
+To make this happen we will do the following:
+  1. Install dependencies via npm. `express`, `cors`, `dotenv`
+  2. Create a `server.js`.
+  3. Bring in dependencies.
+  4. Create routes for requests and responses.
+  5. Retrieve the requested data and format it for front end templating via a constructor function.
+  6. Respond to the request with the new object(s).
+  7. Deploy to heroku to test with the [City Explorer](https://codefellows.github.io/code-301-guide/curriculum/city-explorer-app/front-end/) front end
 
 ## Architecture
++ Node.js will be used along with:
+  + `express` this does something
+  + `cors`: this does also something
+  + `dotenv` As I understand it now this while hold our API keys
++ Node will allow the JavaScript to run as a server outside of a browser environment.
++ `server.js` is written in JavaScript and calls the above installed dependencies.
++ `.json` files are currently holding our mock information.
++ 
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
 
 ## Change Log
@@ -22,6 +41,8 @@
 -->
 `dateToString()`
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toString
+
+
 
 + **Feature**: Locations
   + Estimated time: 60 minutes

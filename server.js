@@ -13,7 +13,9 @@ app.use(cors());
 // ----- Location route
 app.get('/location', (request, response) => {
   let location = new Location(require('./data/location.json')[0], request.query.city);
-  response.send(location);
+  if (error500(request)){
+    response.send(location);
+  }
 });
 
 // ----- Weather route
@@ -23,17 +25,15 @@ app.get('/weather', (request, response) => {
   forecast.data.forEach(value => {
     forecastArray.push(new Weather(value));
   });
-  response.send(forecastArray);
+  if (error500(request)){
+    response.send(forecastArray);
+  }
 });
 
-// -------- 404 route
-app.get('/location', (request, response) => {
-  let invalid = {
-    status: 500,
-    responseText: `Sorry, something went wrong...`
-  };
-  response.send(invalid);
-});
+// -------- 404 function
+function error500(input){
+  return true;
+}
 
 // ----- Location constructor
 function Location(obj, query){
