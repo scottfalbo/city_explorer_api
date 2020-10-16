@@ -12,10 +12,6 @@ const app = express();
 app.use(cors());
 
 
-// app.get('/bad', (request, response) => {
-//   throw new Error('bad cookie');
-// });
-
 // ----- Routes
 app.get('/weather', handleWeather);
 app.get('/location', handleLocation);
@@ -48,7 +44,6 @@ function handleWeather(request, response){
 function error500(){
   return response.status(500).send('Sorry, something went wrong, ...');
 }
-
 
 // ----- Location constructor
 function Location(obj, query){
