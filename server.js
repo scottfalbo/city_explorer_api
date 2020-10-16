@@ -10,6 +10,11 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 app.use(cors());
 
+
+app.get('/bad', (request, response) => {
+  throw new Error('bad cookie');
+});
+
 // ----- Location route
 app.get('/location', (request, response) => {
   try {
