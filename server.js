@@ -11,31 +11,42 @@ const app = express();
 app.use(cors());
 
 
-app.get('/bad', (request, response) => {
-  throw new Error('bad cookie');
-});
+// app.get('/bad', (request, response) => {
+//   throw new Error('bad cookie');
+// });
 
-// ----- Location route
-app.get('/location', (request, response) => {
+// ----- Routes
+app.get('/weather', handleWeather);
+app.get('/location', handleLocation);
+
+//------------------- Location Handler
+function handleLocation( request, response){
   try {
     let location = new Location(require('./data/location.json')[0], request.query.city);
     response.send(location);
   }
   catch(error){
-    console.log('ERROR', error);
-    response.status(500).send('So sorry, something went wrong.');
+    error500();
   }
-});
-
-// ----- Weather route
-app.get('/weather', (request, response) => {
-  const forecastArray = [];
-  let forecast = require('./data/weather.json');
-  forecast.data.forEach(value => {
-    forecastArray.push(new Weather(value));
-  });
-  response.send(forecastArray);
-});
+}
+//--------------------- Weather handler
+function handleWeather(request, response){
+  try {
+    const forecastArray = [];
+    let forecast = require('./data/weather.json');
+    forecast.data.forEach(value => {
+      forecastArray.push(new Weather(value));
+    });
+    response.send(forecastArray);
+  }
+  catch(error){
+    error500();
+  }
+}
+// ----------------------- Error 500
+function error500(){
+  return response.status(500).send('Sorry, something went wrong, ...');
+}
 
 
 // ----- Location constructor
@@ -53,5 +64,5 @@ function Weather(obj){
 }
 
 app.listen(PORT, () => {
-  // start the server
+  console.log(`It's Alive!`);
 });
