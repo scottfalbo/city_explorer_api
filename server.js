@@ -32,7 +32,15 @@ app.get('/weather', (request, response) => {
 
 // -------- 404 function
 function error500(input){
-  return true;
+  let checker = require(('./data/location.json'));
+  checker.forEach(value => {
+    let name = value.display_name;
+    name = name.splice(0, name.indexOf(','));
+    if (name.toLowerCase() === input.toLowerCase()){
+      return true;
+    }
+  });
+  return false;
 }
 
 // ----- Location constructor
