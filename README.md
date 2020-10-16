@@ -28,38 +28,32 @@ To make this happen we will do the following:
 + Node will allow the JavaScript to run as a server outside of a browser environment.
 + `server.js` is written in JavaScript and calls the above installed dependencies.
 + `.json` files are currently holding our mock information.
-+ 
-<!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
++ objects are prepared for use with `Mustache.js`
 
 ## Change Log
-<!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an examples:
-
-01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource.
-
-## Credits and Collaborations
-<!-- Give credit (and a link) to other people or resources that helped you build this application. -->
--->
-`dateToString()`
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toString
-
-
 
 + **Feature**: Locations
   + Estimated time: 60 minutes
   + Start time: 2:12pm
   + Finish time: 2:43pm
   + Actual time: 30 minutes
-
++ 10-15-2020 2:45pm - Server is talking to the front end and displaying location information
 
 + **Feature**: Weather
   + Estimated time: 45 minutes
   + Start time: 2:46pm
   + Finish time: 3:15pm
   + Actual time: 30 minutes
-
++ 10-15-2020 3:15pm - Application is displaying weather data
 
 + **Feature**: Errors
   + Estimated time: 45 minutes
   + Start time: 4:30pm
-  + Finish time: 
-  + Actual time: 
+  + Finish time: 7:50pm
+  + Actual time: 90 minutes cumulatively
++ 10-15-2020 7:50pm - I think the error thing will work once there is a way to check the input against something.
+
+
+## Credits and Collaborations
++ Learned about the `dateToString()` method from [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toString)<br>
++ Working on the error message references the [301 class-06 demo code](https://github.com/codefellows/seattle-301n19/blob/master/class-06/demo/server/server.js).<br>
