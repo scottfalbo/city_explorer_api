@@ -12,9 +12,13 @@ app.use(cors());
 
 // ----- Location route
 app.get('/location', (request, response) => {
-  let location = new Location(require('./data/location.json')[0], request.query.city);
-  if (error500(request)){
+  try {
+    let location = new Location(require('./data/location.json')[0], request.query.city);
     response.send(location);
+  }
+  catch(error){
+    console.log('ERROR', error);
+    response.status(500).send('So sorry, something went wrong.');
   }
 });
 
@@ -25,23 +29,9 @@ app.get('/weather', (request, response) => {
   forecast.data.forEach(value => {
     forecastArray.push(new Weather(value));
   });
-  if (error500(request)){
-    response.send(forecastArray);
-  }
+  response.send(forecastArray);
 });
 
-// -------- 404 function
-function error500(input){
-  let checker = require(('./data/location.json'));
-  checker.forEach(value => {
-    let name = value.display_name;
-    name = name.splice(0, name.indexOf(','));
-    if (name.toLowerCase() === input.toLowerCase()){
-      return true;
-    }
-  });
-  return false;
-}
 
 // ----- Location constructor
 function Location(obj, query){
