@@ -71,6 +71,14 @@ To make this happen we will do the following:
 + 10-17-2020 - Figured out the weather api.  Learned about `.query()`.  The weather handler takes in the location request and returns 8 days of weather based on latitude and longitude.
 
 
++ **Feature**: Data Formatting
+  + Estimated time: 30 minutes
+  + Start time: 1:30pm
+  + Finish time: 2:25pm
+  + Actual time: 55 minutes
++ 10-17-2020 - Did this while I was refactoring the weather handler.  Replaced `.forEach()` with `.map()`.  Still a little confused on exactly what it's doing, looking forward to this weeks codes challenges.
+
+
 ## Credits and Collaborations
 + Learned about the `dateToString()` method from [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toString) after trying a million ways of converting the `object` and trying to `splice` it.<br>
 + Working on the error message references the [301 class-06 demo code](https://github.com/codefellows/seattle-301n19/blob/master/class-06/demo/server/server.js).<br>
