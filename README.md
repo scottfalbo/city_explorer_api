@@ -79,6 +79,13 @@ To make this happen we will do the following:
 + 10-17-2020 - Did this while I was refactoring the weather handler.  Replaced `.forEach()` with `.map()`.  Still a little confused on exactly what it's doing, looking forward to this weeks codes challenges.
 
 
++ **Feature**: Trails api
+  + Estimated time: 45 minutes
+  + Start time: 3:00pm
+  + Finish time: 3:30pm
+  + Actual time: 30 minutes
++ 10-17-2020 - Added the trails api.  Returns the top ten trails in the searched area by using the `request` latitude and longitude.  Same `.map()` sorting as the weather.
+
 ## Credits and Collaborations
 + Learned about the `dateToString()` method from [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toString) after trying a million ways of converting the `object` and trying to `splice` it.<br>
 + Working on the error message references the [301 class-06 demo code](https://github.com/codefellows/seattle-301n19/blob/master/class-06/demo/server/server.js).<br>
