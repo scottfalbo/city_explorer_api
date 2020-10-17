@@ -75,3 +75,4 @@ To make this happen we will do the following:
 + Learned about the `dateToString()` method from [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toString) after trying a million ways of converting the `object` and trying to `splice` it.<br>
 + Working on the error message references the [301 class-06 demo code](https://github.com/codefellows/seattle-301n19/blob/master/class-06/demo/server/server.js).<br>
 + had some help from Amber Falbo on some tricks for the weather api URL.
++ [query wiki](https://en.wikipedia.org/wiki/Query_string) Read through this a bit.
