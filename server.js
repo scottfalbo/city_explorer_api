@@ -96,6 +96,20 @@ function Weather(obj){
   this.time = new Date(obj.valid_date).toDateString();
 }
 
+//-------- Trails Constructor
+function Trails(obj){
+  this.name = obj.name;
+  this.location = obj.location;
+  this.length = obj.length;
+  this.stars = obj.stars;
+  this.star_votes = obj.starVotes;
+  this.summary = obj.summary;
+  this.trail_url = obj.url;
+  this.conditions = obj.conditionDetails;
+  this.condition_date = obj.conditionDate;
+  this.condition_time = obj.condition_time;
+}
+
 function notFound(request, response) {
   response.status(404).send(`Couldn't load the thing into the thing from the other thing`);
 }
