@@ -29,7 +29,6 @@ function handleLocation(request, response){
   superagent.get(URL)
     .then(data => {
       let location =new Location(data.body[0], city);
-      console.log(location);
       response.status(200).send(location);
     }).catch(error => {
       response.status(500).send('Poop, something went wrong, ...');
@@ -39,17 +38,25 @@ function handleLocation(request, response){
 
 //--------------------- Weather handler
 function handleWeather(request, response){
-  try {
-    const forecastArray = [];
-    let forecast = require('./data/weather.json');
-    forecast.data.forEach(value => {
-      forecastArray.push(new Weather(value));
+  const URL = `https://api.weatherbit.io/v2.0/forecast/daily`;
+  let parameters = {
+    key: process.env.WEATHER_API_KEY,
+    lat: request.query.latitude,
+    lon: request.query.longitude,
+    days: 8
+  };
+  superagent.get(URL)
+    .query(parameters)
+    .then(value => {
+      let forecast = value.body;
+      let weatherArray = forecast.data.map(daily => {
+        return new Weather(daily);
+      });
+      response.status(200).send(weatherArray);
+    }).catch(error => {
+      response.status(500).send('Poop, something went wrong, ...');
+      console.log(error);
     });
-    response.send(forecastArray);
-  }
-  catch(error){
-    error500();
-  }
 }
 
 // ----- Location constructor
@@ -67,7 +74,7 @@ function Weather(obj){
 }
 
 function notFound(request, response) {
-  response.status(404).send('nope');
+  response.status(404).send(`Couldn't load the thing into the thing from the other thing`);
 }
 
 app.listen(PORT, () => {
