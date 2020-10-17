@@ -25,6 +25,7 @@ To make this happen we will do the following:
   + `express` this does something
   + `cors`: this does also something
   + `dotenv` As I understand it now this while hold our API keys
+  + `superagent` will be handling our `GET`
 + Node will allow the JavaScript to run as a server outside of a browser environment.
 + `server.js` is written in JavaScript and calls the above installed dependencies.
 + `.json` files are currently holding our mock information.
@@ -53,7 +54,15 @@ To make this happen we will do the following:
   + Actual time: 90 minutes cumulatively
 + 10-15-2020 7:50pm - I think the error thing will work once there is a way to check the input against something.
 
+### October 7th Change Log:
+
++ **Feature**: Locations
+  + Estimated time: 30 minutes
+  + Start time: 12:30pm
+  + Finish time: 1:05pm
+  + Actual time: 35 minutes
++ 10-17-2020: the location is being accessed from the locationIQ api instead of locally from the `.json` files.  Installed and refactored to use `superagent` to handle `.get` and `.use`
 
 ## Credits and Collaborations
-+ Learned about the `dateToString()` method from [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toString)<br>
++ Learned about the `dateToString()` method from [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toString) after trying a million ways of converting the `object` and trying to `splice` it.<br>
 + Working on the error message references the [301 class-06 demo code](https://github.com/codefellows/seattle-301n19/blob/master/class-06/demo/server/server.js).<br>
