@@ -16,6 +16,7 @@ app.use(cors());
 // ----- Routes
 app.get('/location', handleLocation);
 app.get('/weather', handleWeather);
+app.get('/trails', handleTrails);
 
 app.use('*', notFound);
 
@@ -38,13 +39,13 @@ function handleLocation(request, response){
 
 //--------------------- Weather handler
 function handleWeather(request, response){
-  const URL = `https://api.weatherbit.io/v2.0/forecast/daily`;
   let parameters = {
     key: process.env.WEATHER_API_KEY,
     lat: request.query.latitude,
     lon: request.query.longitude,
     days: 8
   };
+  const URL = `https://api.weatherbit.io/v2.0/forecast/daily`;
   superagent.get(URL)
     .query(parameters)
     .then(value => {
@@ -53,6 +54,28 @@ function handleWeather(request, response){
         return new Weather(daily);
       });
       response.status(200).send(weatherArray);
+    }).catch(error => {
+      response.status(500).send('Poop, something went wrong, ...');
+      console.log(error);
+    });
+}
+
+// -------------------- Trails Handler
+function handleTrails(request, response){
+  let parameters = {
+    key: process.env.TRAIL_API_KEY,
+    lat: request.query.latitude,
+    lon: request.query.longitude,
+    maxResults: 10
+  };
+  const URL = `https://www.hikingproject.com/data/get-trails`;
+  superagent.get(URL)
+    .query(parameters)
+    .then(value => {
+      let trails = value.body.trails.map(newTrail => {
+        return new Trails(newTrail);
+      });
+      response.status(200).send(trails);
     }).catch(error => {
       response.status(500).send('Poop, something went wrong, ...');
       console.log(error);
