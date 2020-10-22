@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS weather;
+
+CREATE TABLE weather (
+  id SERIAL PRIMARY KEY,
+  forcast VARCHAR(255),
+  time VARCHAR(255)
+);
