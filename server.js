@@ -50,7 +50,7 @@ function handleLocation(request, response){
       }
     })
     .catch( error => {
-      // console.log('Error', error);
+      console.log('Error', error);
       response.status(500).send('Something went wrong');
     });
 }
