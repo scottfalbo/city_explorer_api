@@ -116,17 +116,17 @@ function notFound(request, response) {
 }
 
 // ------------------------- Connect to database
-// client.connect()
-//   .then(() => {
-//     app.listen(PORT, () => {
-//       console.log(`It's Alive!`);
-//     });
-//   })
-//   .catch(error => {
-//     console.log(error);
-//   });
+client.connect()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`It's Alive!`);
+    });
+  })
+  .catch(error => {
+    console.log('error message:', error);
+  });
 
 // ----------------- Start Server
-app.listen(PORT, () => {
-  console.log(`It's Alive!!!`);
-});
+// app.listen(PORT, () => {
+//   console.log(`It's Alive!!!`);
+// });

@@ -86,6 +86,15 @@ To make this happen we will do the following:
   + Actual time: 30 minutes
 + 10-17-2020 - Added the trails api.  Returns the top ten trails in the searched area by using the `request` latitude and longitude.  Same `.map()` sorting as the weather.
 
+### October 22nd , Class 08: Change Log:
+
++ **Feature**: Database
+  + Estimated time: 60 minutes
+  + Start time: 10:00am
+  + Finish time: 6:30pm
+  + Actual time: about 2 hours on and off
++ 10-22-2020 - Added a database and tables in a `schema.sql`.  Brought `postgresql` into the server.
+
 ## Credits and Collaborations
 + Learned about the `dateToString()` method from [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toString) after trying a million ways of converting the `object` and trying to `splice` it.<br>
 + Working on the error message references the [301 class-06 demo code](https://github.com/codefellows/seattle-301n19/blob/master/class-06/demo/server/server.js).<br>
