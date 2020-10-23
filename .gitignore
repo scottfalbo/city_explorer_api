@@ -82,6 +82,7 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+data/
 
 # TypeScript v1 declaration files
 typings/
@@ -231,3 +232,5 @@ $RECYCLE.BIN/
 keys.txt
 
 # End of https://www.gitignore.io/api/node,macos,linux,windows,webstorm,visualstudiocode
+
+
