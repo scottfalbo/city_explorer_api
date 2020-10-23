@@ -2,6 +2,7 @@
 
 // ----- Dependencies
 const express = require('express');
+const pg = require('pg');
 const cors = require('cors');
 require('dotenv').config();
 const superagent = require('superagent');
@@ -11,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 
 const app = express();
 app.use(cors());
-
+const client = new pg.Client(process.env.DATABASE_URL);
 
 // ----- Routes
 app.get('/location', handleLocation);
@@ -114,6 +115,18 @@ function notFound(request, response) {
   response.status(404).send(`Couldn't load the thing into the thing from the other thing`);
 }
 
-app.listen(PORT, () => {
-  console.log(`It's Alive!`);
-});
+// ------------------------- Connect to database
+client.connect()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`It's Alive!`);
+    });
+  })
+  .catch(error => {
+    console.log('error message:', error);
+  });
+
+// ----------------- Start Server
+// app.listen(PORT, () => {
+//   console.log(`It's Alive!!!`);
+// });
