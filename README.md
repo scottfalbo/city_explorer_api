@@ -120,6 +120,13 @@ To make this happen we will do the following:
   + Actual time: 30 minutes
 + 10-24-2020 - Got the Yelp API hooked up and doing the things.
 
++ **Feature**: Pagination
+  + Estimated time: 90 minutes
+  + Start time: 3:45pm
+  + Finish time: 3:55pm
+  + Actual time: 10 minutes
++ 10-24-2020 - Today's class basically did this, thought it would still be a hassle but it was super smooth.  The yelp results paginate by 5 at a time.
+
 
 ## Credits and Collaborations
 + Learned about the `dateToString()` method from [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toString) after trying a million ways of converting the `object` and trying to `splice` it.<br>

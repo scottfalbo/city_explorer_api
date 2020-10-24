@@ -98,13 +98,9 @@ function handleTrails(request, response){
 
 // ------------------------ Movies Handler
 function handleMovies(request, response){
-  // const perPage = {};
-  // const page = request.query.page || 1;
-  // const start = ((page - 1) * perPage + 1);
   const parameters = {
     api_key: process.env.MOVIE_API_KEY,
     query: request.query.search_query,
-    limit: 20
   };
   const URL = 'https://api.themoviedb.org/3/search/movie';
 
@@ -121,10 +117,17 @@ function handleMovies(request, response){
 
 // ------------------------ Yelp Handler
 function handleYelp(request, response){
+
+  const perPage = 5;
+  const page = request.query.page || 1;
+  const start = ((page - 1) * perPage + 1);
+
+
   const parameters = {
     latitude: request.query.latitude,
     longitude: request.query.longitude,
-    limit: 20
+    limit: perPage,
+    offset: start
   };
   const URL = 'https://api.yelp.com/v3/businesses/search';
 
