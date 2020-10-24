@@ -6,7 +6,10 @@ const pg = require('pg');
 const cors = require('cors');
 require('dotenv').config();
 const superagent = require('superagent');
+
 const { response } = require('express'); //eslint-disable-line
+
+
 // const { response } = require('express');
 
 const PORT = process.env.PORT || 3000;
@@ -37,13 +40,17 @@ function handleLocation(request, response){
         const URL = `https://us1.locationiq.com/v1/search.php?key=${key}&q=${city}&format=json`;
         superagent.get(URL)
           .then(data => {
+
             let location = new Location(data.body[0], city);
+
             response.status(200).send(location);
 
             const SQL = 'INSERT INTO location (search_query, formatted_query, latitude, longitude) VALUES($1, $2, $3, $4) RETURNING *';
             const safeValues = [location.search_query, location.formatted_query, location.latitude, location.longitude];
             client.query(SQL, safeValues)
+
               .then(data => { //eslint-disable-line
+
                 //store data
               });
           });
