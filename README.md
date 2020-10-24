@@ -3,6 +3,10 @@
 **Author**: Scott Falbo
 **Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
 
++ To launch goto the Front end and insert the back end link without the trailing `/`.
+  + [Front End for deployment](https://codefellows.github.io/code-301-guide/curriculum/city-explorer-app/front-end/)<br>
+  + [Live Back End](https://falbo-city-explorer.herokuapp.com/)<br>
+
 ## Overview
 This is a backend server that:
 1. Receives a request from the client.

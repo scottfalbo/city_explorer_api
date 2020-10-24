@@ -46,7 +46,7 @@ function handleLocation(request, response){
             const safeValues = [location.search_query, location.formatted_query, location.latitude, location.longitude];
             client.query(SQL, safeValues)
               .then(data => { //eslint-disable-line
-                //store data
+                //inserts objects in to database city_explorer
               });
           });
       }
@@ -130,7 +130,7 @@ function handleYelp(request, response){
   const URL = 'https://api.yelp.com/v3/businesses/search';
 
   superagent.get(URL)
-    .set({'Authorization':`Bearer ${process.env.YELP_API_KEY}`})
+    .auth(process.env.YELP_API_KEY, {type: 'bearer'})
     .query(parameters)
     .then(value => {
       // console.log(value.body.businesses);
@@ -172,6 +172,7 @@ function Trails(obj){
 
 //------------ Movies constructor
 function Movies(obj){
+  // imgPath below from API docs here: https://developers.themoviedb.org/3/getting-started/images
   const imgPath = `https://image.tmdb.org/t/p/w500`;
   this.title = obj.title;
   this.overview = obj.overview;
@@ -181,8 +182,8 @@ function Movies(obj){
   this.popularity = obj.popularity;
   this.released_on = obj.release_date;
 }
-//------------ Movies constructor
 
+//------------ Movies constructor
 function Yelp(obj){
   this.name = obj.name;
   this. image_url = obj.image_url;
@@ -194,15 +195,15 @@ function Yelp(obj){
 //---------- Error messages---------------
 // ---------------------------------------- 500
 function error500(req, res, err) {
-  console.log('ERROR:', err);
-  res.status(500).send('Fix your stuff');
+  console.log('ERROR 500:', err);
+  res.status(500).send(`The thing didn't work so the other thing didn't shoe up`);
 }
 //----------------------------------------- 404
 function notFound(request, response) {
-  response.status(404).send(`Couldn't load the thing into the thing from the other thing because there are no things here to be found.`);
+  console.log('Error 404');
+  response.status(404).send(`Couldn't load the thing into the thing from the other thing because there are no things to be had here.`);
 }
-
-// ------------------------- Connect to database
+// ------------------------- Connect to database and server
 client.connect()
   .then(() => {
     app.listen(PORT, () => {
