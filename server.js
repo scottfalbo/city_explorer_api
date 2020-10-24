@@ -6,10 +6,7 @@ const pg = require('pg');
 const cors = require('cors');
 require('dotenv').config();
 const superagent = require('superagent');
-
 const { response } = require('express'); //eslint-disable-line
-
-
 // const { response } = require('express');
 
 const PORT = process.env.PORT || 3000;
@@ -22,6 +19,8 @@ const client = new pg.Client(process.env.DATABASE_URL);
 app.get('/location', handleLocation);
 app.get('/weather', handleWeather);
 app.get('/trails', handleTrails);
+app.get('/movies', handleMovies);
+app.get('/yelp', handleYelp);
 
 app.use('*', notFound);
 
@@ -40,17 +39,13 @@ function handleLocation(request, response){
         const URL = `https://us1.locationiq.com/v1/search.php?key=${key}&q=${city}&format=json`;
         superagent.get(URL)
           .then(data => {
-
             let location = new Location(data.body[0], city);
-
             response.status(200).send(location);
 
             const SQL = 'INSERT INTO location (search_query, formatted_query, latitude, longitude) VALUES($1, $2, $3, $4) RETURNING *';
             const safeValues = [location.search_query, location.formatted_query, location.latitude, location.longitude];
             client.query(SQL, safeValues)
-
               .then(data => { //eslint-disable-line
-
                 //store data
               });
           });
@@ -62,7 +57,7 @@ function handleLocation(request, response){
 
 //--------------------- Weather handler
 function handleWeather(request, response){
-  let parameters = {
+  const parameters = {
     key: process.env.WEATHER_API_KEY,
     lat: request.query.latitude,
     lon: request.query.longitude,
@@ -83,7 +78,7 @@ function handleWeather(request, response){
 
 // -------------------- Trails Handler
 function handleTrails(request, response){
-  let parameters = {
+  const parameters = {
     key: process.env.TRAIL_API_KEY,
     lat: request.query.latitude,
     lon: request.query.longitude,
@@ -100,6 +95,56 @@ function handleTrails(request, response){
     })
     .catch( error => error500(request, response, error));
 }
+
+// ------------------------ Movies Handler
+function handleMovies(request, response){
+  const parameters = {
+    api_key: process.env.MOVIE_API_KEY,
+    query: request.query.search_query,
+  };
+  const URL = 'https://api.themoviedb.org/3/search/movie';
+
+  superagent.get(URL)
+    .query(parameters)
+    .then(value => {
+      let movies = value.body.results.map(newMovie => {
+        return new Movies(newMovie);
+      });
+      response.status(200).send(movies);
+    })
+    .catch( error => error500(request, response, error));
+}
+
+// ------------------------ Yelp Handler
+function handleYelp(request, response){
+
+  const perPage = 5;
+  const page = request.query.page || 1;
+  const start = ((page - 1) * perPage + 1);
+
+
+  const parameters = {
+    latitude: request.query.latitude,
+    longitude: request.query.longitude,
+    limit: perPage,
+    offset: start
+  };
+  const URL = 'https://api.yelp.com/v3/businesses/search';
+
+  superagent.get(URL)
+    .set({'Authorization':`Bearer ${process.env.YELP_API_KEY}`})
+    .query(parameters)
+    .then(value => {
+      // console.log(value.body.businesses);
+      let yelps = value.body.businesses.map(newYelp => {
+        return new Yelp(newYelp);
+      });
+      response.status(200).send(yelps);
+    })
+    .catch(error => error500(request, response, error));
+}
+
+
 
 // ----- Location constructor
 function Location(obj, query){
@@ -129,11 +174,32 @@ function Trails(obj){
   this.condition_time = obj.condition_time;
 }
 
+//------------ Movies constructor
+function Movies(obj){
+  const imgPath = `https://image.tmdb.org/t/p/w500`;
+  this.title = obj.title;
+  this.overview = obj.overview;
+  this.average_votes = obj.vote_average;
+  this.total_votes = obj.vote_count;
+  this.image_url = `${imgPath}${obj.poster_path}`;
+  this.popularity = obj.popularity;
+  this.released_on = obj.release_date;
+}
+//------------ Movies constructor
+
+function Yelp(obj){
+  this.name = obj.name;
+  this. image_url = obj.image_url;
+  this.price = obj.price;
+  this.rating = obj.rating;
+  this.url = obj.url;
+}
+
 //---------- Error messages---------------
 // ---------------------------------------- 500
 function error500(req, res, err) {
   console.log('ERROR:', err);
-  res.status(500).send('function message');
+  res.status(500).send('Fix your stuff');
 }
 //----------------------------------------- 404
 function notFound(request, response) {

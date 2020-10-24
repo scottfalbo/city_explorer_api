@@ -95,6 +95,39 @@ To make this happen we will do the following:
   + Actual time: about 2 hours on and off
 + 10-22-2020 - Added a database and tables in a `schema.sql`.  Brought `postgresql` into the server.
 
++ **Feature**: Server
+  + Estimated time: 90 minutes
+  + Start time: 7:00pm
+  + Finish time: 9:00pm
+  + Actual time: 2 hours
++ 10-22-2020 - Location information loads from cashed database if previously searched.  If not an API call is made and the object is cached.
+
++ Deployed to Heroku with live database.
+
+### October 24nd , Class 08: Change Log:
+
++ **Feature**: Movies
+  + Estimated time: 60 minutes
+  + Start time: 1:30pm
+  + Finish time: 2:10pm
+  + Actual time: 40 minutes
++ 10-24-2020 - Getting movies back from the API, need to filter down the number of results.  Going to do other stuff and then circle back to docs.
+
++ **Feature**: Yelp
+  + Estimated time: 60 minutes
+  + Start time: 2:30pm
+  + Finish time: 3:00
+  + Actual time: 30 minutes
++ 10-24-2020 - Got the Yelp API hooked up and doing the things.
+
++ **Feature**: Pagination
+  + Estimated time: 90 minutes
+  + Start time: 3:45pm
+  + Finish time: 3:55pm
+  + Actual time: 10 minutes
++ 10-24-2020 - Today's class basically did this, thought it would still be a hassle but it was super smooth.  The yelp results paginate by 5 at a time.
+
+
 ## Credits and Collaborations
 + Learned about the `dateToString()` method from [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toString) after trying a million ways of converting the `object` and trying to `splice` it.<br>
 + Working on the error message references the [301 class-06 demo code](https://github.com/codefellows/seattle-301n19/blob/master/class-06/demo/server/server.js).<br>
