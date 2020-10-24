@@ -54,7 +54,6 @@ function handleLocation(request, response){
     .catch( error => error500(request, response, error));
 }
 
-
 //--------------------- Weather handler
 function handleWeather(request, response){
   const parameters = {
@@ -122,7 +121,6 @@ function handleYelp(request, response){
   const page = request.query.page || 1;
   const start = ((page - 1) * perPage + 1);
 
-
   const parameters = {
     latitude: request.query.latitude,
     longitude: request.query.longitude,
@@ -143,8 +141,6 @@ function handleYelp(request, response){
     })
     .catch(error => error500(request, response, error));
 }
-
-
 
 // ----- Location constructor
 function Location(obj, query){
