@@ -20,6 +20,7 @@ app.get('/location', handleLocation);
 app.get('/weather', handleWeather);
 app.get('/trails', handleTrails);
 app.get('/movies', handleMovies);
+app.get('/yelp', handleYelp);
 
 app.use('*', notFound);
 
@@ -95,21 +96,21 @@ function handleTrails(request, response){
     .catch( error => error500(request, response, error));
 }
 
+// ------------------------ Movies Handler
 function handleMovies(request, response){
   // const perPage = {};
   // const page = request.query.page || 1;
   // const start = ((page - 1) * perPage + 1);
   const parameters = {
     api_key: process.env.MOVIE_API_KEY,
-    query: request.query.search_query
+    query: request.query.search_query,
+    limit: 20
   };
-  // query: request.query.search_query,
   const URL = 'https://api.themoviedb.org/3/search/movie';
 
   superagent.get(URL)
     .query(parameters)
     .then(value => {
-      // console.log(data.body);
       let movies = value.body.results.map(newMovie => {
         return new Movies(newMovie);
       });
@@ -117,18 +118,30 @@ function handleMovies(request, response){
     })
     .catch( error => error500(request, response, error));
 }
-// https://api.themoviedb.org/3/search/discover/movie
-// /discover/movie
 
-//   superagent.get(URL)
-//     .set('user-key', process.env.NAME)
-//     .query(parameters)
-//     .then(data => {
-//       //
-//     })
-//     .catch (error => error500(request, response, error));
+// ------------------------ Yelp Handler
+function handleYelp(request, response){
+  const parameters = {
+    latitude: request.query.latitude,
+    longitude: request.query.longitude,
+    limit: 20
+  };
+  const URL = 'https://api.yelp.com/v3/businesses/search';
 
-// }
+  superagent.get(URL)
+    .set({'Authorization':`Bearer ${process.env.YELP_API_KEY}`})
+    .query(parameters)
+    .then(value => {
+      // console.log(value.body.businesses);
+      let yelps = value.body.businesses.map(newYelp => {
+        return new Yelp(newYelp);
+      });
+      response.status(200).send(yelps);
+    })
+    .catch(error => error500(request, response, error));
+}
+
+
 
 // ----- Location constructor
 function Location(obj, query){
@@ -160,13 +173,23 @@ function Trails(obj){
 
 //------------ Movies constructor
 function Movies(obj){
+  const imgPath = `https://image.tmdb.org/t/p/w500`;
   this.title = obj.title;
   this.overview = obj.overview;
   this.average_votes = obj.vote_average;
   this.total_votes = obj.vote_count;
-  this.image_url = obj.poster_path;
+  this.image_url = `${imgPath}${obj.poster_path}`;
   this.popularity = obj.popularity;
   this.released_on = obj.release_date;
+}
+//------------ Movies constructor
+
+function Yelp(obj){
+  this.name = obj.name;
+  this. image_url = obj.image_url;
+  this.price = obj.price;
+  this.rating = obj.rating;
+  this.url = obj.url;
 }
 
 //---------- Error messages---------------
