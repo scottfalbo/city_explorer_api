@@ -13,16 +13,16 @@ DROP TABLE IF EXISTS weather;
 CREATE TABLE weather (
   id SERIAL PRIMARY KEY,
   forcast VARCHAR(255),
-  time_ VARCHAR(255)
+  time VARCHAR(255)
 );
 
 DROP TABLE IF EXISTS trails;
 
 CREATE TABLE trails (
   id SERIAL PRIMARY KEY,
-  name_ VARCHAR(255),
-  location_ VARCHAR(255),
-  length_ FLOAT,
+  name VARCHAR(255),
+  location VARCHAR(255),
+  length FLOAT,
   stars FLOAT,
   summary VARCHAR(255),
   trail_url VARCHAR(255),

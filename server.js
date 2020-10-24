@@ -6,7 +6,10 @@ const pg = require('pg');
 const cors = require('cors');
 require('dotenv').config();
 const superagent = require('superagent');
-const { response } = require('express');
+
+const { response } = require('express'); //eslint-disable-line
+
+
 // const { response } = require('express');
 
 const PORT = process.env.PORT || 3000;
@@ -37,28 +40,25 @@ function handleLocation(request, response){
         const URL = `https://us1.locationiq.com/v1/search.php?key=${key}&q=${city}&format=json`;
         superagent.get(URL)
           .then(data => {
-            let location =new Location(data.body[0], city);
+
+            let location = new Location(data.body[0], city);
+
             response.status(200).send(location);
 
             const SQL = 'INSERT INTO location (search_query, formatted_query, latitude, longitude) VALUES($1, $2, $3, $4) RETURNING *';
             const safeValues = [location.search_query, location.formatted_query, location.latitude, location.longitude];
             client.query(SQL, safeValues)
-              .then(data => {
+
+              .then(data => { //eslint-disable-line
+
                 //store data
               });
           });
       }
     })
-    .catch( error => {
-      console.log('Error', error);
-      response.status(500).send('Something went wrong');
-    });
+    .catch( error => error500(request, response, error));
 }
 
-// function error500(error){
-//   console.log('Error Message:', error);
-//   return response.status(500).send('function message');
-// }
 
 //--------------------- Weather handler
 function handleWeather(request, response){
@@ -77,10 +77,8 @@ function handleWeather(request, response){
         return new Weather(daily);
       });
       response.status(200).send(weatherArray);
-    }).catch(error => {
-      response.status(500).send('Poop, something went wrong, ...');
-      // console.log(error);
-    });
+    })
+    .catch( error => error500(request, response, error));
 }
 
 // -------------------- Trails Handler
@@ -99,10 +97,8 @@ function handleTrails(request, response){
         return new Trails(newTrail);
       });
       response.status(200).send(trails);
-    }).catch(error => {
-      response.status(500).send('Poop, something went wrong, ...');
-      // console.log(error);
-    });
+    })
+    .catch( error => error500(request, response, error));
 }
 
 // ----- Location constructor
@@ -133,8 +129,15 @@ function Trails(obj){
   this.condition_time = obj.condition_time;
 }
 
+//---------- Error messages---------------
+// ---------------------------------------- 500
+function error500(req, res, err) {
+  console.log('ERROR:', err);
+  res.status(500).send('function message');
+}
+//----------------------------------------- 404
 function notFound(request, response) {
-  response.status(404).send(`Couldn't load the thing into the thing from the other thing`);
+  response.status(404).send(`Couldn't load the thing into the thing from the other thing because there are no things here to be found.`);
 }
 
 // ------------------------- Connect to database
@@ -147,8 +150,3 @@ client.connect()
   .catch(error => {
     console.log('error message:', error);
   });
-
-// ----------------- Start Server
-// app.listen(PORT, () => {
-//   console.log(`It's Alive!!!`);
-// });
