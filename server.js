@@ -196,7 +196,7 @@ function Yelp(obj){
 // ---------------------------------------- 500
 function error500(req, res, err) {
   console.log('ERROR 500:', err);
-  res.status(500).send(`The thing didn't work so the other thing didn't shoe up`);
+  res.status(500).send(`The thing didn't work so the other thing didn't shoW up`);
 }
 //----------------------------------------- 404
 function notFound(request, response) {
