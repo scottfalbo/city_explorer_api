@@ -5,7 +5,7 @@
 
 + To launch goto the Front end and insert the back end link without the trailing `/`.
   + [Front End for deployment](https://codefellows.github.io/code-301-guide/curriculum/city-explorer-app/front-end/)<br>
-  + [Live Back End](https://falbo-city-explorer.herokuapp.com/)<br>
+  + No longer live.
 
 ## Overview
 This is a backend server that:
